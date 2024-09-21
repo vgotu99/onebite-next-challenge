@@ -1,12 +1,16 @@
-import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import SearchableLayout from "@/components/searchable-layout";
+import movies from '@/mock/dummy.json'
+import MovieItem from "@/components/movie-item";
 
 export default function Search() {
-  const router = useRouter();
-  const { q } = router.query;
 
-  return <h1>검색결과 : {q}</h1>;
+  return <div>
+            {movies.map((movie) => (
+          <MovieItem key={movie.id} {...movie} />
+        ))}
+  </div>
+  
 }
 
 Search.getLayout = (page: ReactNode) => {
